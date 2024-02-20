@@ -38,6 +38,7 @@ const Navbar = () => {
               className="object-contain"
             />
           ))}
+          <button className="btn">Feedback</button>
         </div>
       </nav>
     </header>
