@@ -5,7 +5,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Product } from "@/types";
-import { formatNumber } from "@/lib/utils";
+import { formatNumber } from "@/lib/functions/utils";
 import PriceinfoCard from "@/components/PriceinfoCard";
 import ProductCard from "@/components/ProductCard";
 import Modal from "@/components/Modal";

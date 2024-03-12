@@ -1,6 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 const navicons = [
   { src: "assets/icons/search.svg", alt: "search" },
   { src: "assets/icons/black-heart.svg", alt: "heart" },
@@ -38,7 +46,18 @@ const Navbar = () => {
               className="object-contain"
             />
           ))}
-          <button className="btn">Feedback</button>
+          <Dialog>
+            <DialogTrigger className=" rounded-2xl p-3 bg-slate-700 text-slate-50 text-sm">
+              Feedback
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Feedback Form</DialogTitle>
+                <DialogDescription></DialogDescription>
+                <input className="" type="text" />
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
         </div>
       </nav>
     </header>

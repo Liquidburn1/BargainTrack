@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import * as cheerio from "cheerio";
-import { extractCurrency, extractDescription } from "../utils";
+import { extractCurrency, extractDescription } from "../functions/utils";
 /* eslint-disable @typescript-eslint/no-unused-vars */
 export async function scrapeAmazonProduct(url: string) {
   if (!url) return;
