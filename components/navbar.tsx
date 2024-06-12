@@ -3,12 +3,14 @@ import Image from "next/image";
 import React from "react";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+
 const navicons = [
   { src: "assets/icons/search.svg", alt: "search" },
   { src: "assets/icons/black-heart.svg", alt: "heart" },
@@ -35,7 +37,7 @@ const Navbar = () => {
             </span>
           </p>
         </Link>
-        <div className=" flex items-center gap-5">
+        <div className="flex items-center gap-5 cursor">
           {navicons.map((icon) => (
             <Image
               key={icon.alt}
@@ -43,19 +45,47 @@ const Navbar = () => {
               alt={icon.alt}
               width={28}
               height={28}
-              className="object-contain"
+              className="object-contain cursor-pointer"
             />
           ))}
           <Dialog>
-            <DialogTrigger className=" rounded-2xl p-3 bg-slate-700 text-slate-50 text-sm">
+            <DialogTrigger className=" rounded-2xl p-3 bg-slate-800 text-slate-50 text-sm transform transition duration-500 hover:scale-110">
               Feedback
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
                 <DialogTitle>Feedback Form</DialogTitle>
-                <DialogDescription></DialogDescription>
-                <input className="" type="text" />
+                <DialogDescription className="text-slate-700">
+                  Tell us what other websites we should add!
+                </DialogDescription>
               </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <div className="flex items-center gap-4 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                  <label htmlFor="email">Email:</label>
+                  <input
+                    className="flex col-span-3 h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    type="email"
+                    id="email"
+                    placeholder="Email"
+                  />
+                </div>
+
+                <div className="flex items-center gap-4 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                  <label htmlFor="desc">Description:</label>
+                  <textarea
+                    placeholder="Description"
+                    id="desc"
+                    className={
+                      " flex col-span-3 min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    }
+                  />
+                </div>
+              </div>
+              <DialogClose asChild>
+                <button className=" rounded-2xl p-3 bg-slate-900 text-slate-50 text-sm">
+                  Submit
+                </button>
+              </DialogClose>
             </DialogContent>
           </Dialog>
         </div>

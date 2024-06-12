@@ -9,8 +9,11 @@ interface Props {
 
 const ProductCard = ({ product }: Props) => {
   return (
-    <Link href={`/products/${product._id}`} className="product-card">
-      <div className="product-card_img-container">
+    <Link
+      href={`/products/${product._id}`}
+      className="product-card transform transition duration-500 hover:scale-110 border-4  p-3 shadow-xl"
+    >
+      <div className="product-card_img-container ">
         <Image
           src={product.image}
           alt={product.title}
@@ -19,7 +22,7 @@ const ProductCard = ({ product }: Props) => {
           className="product-card_img"
         />
       </div>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 border-t-2 p-2">
         <h3 className="product-title">{product.title}</h3>
       </div>
       <div className="flex justify-between">

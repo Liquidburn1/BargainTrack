@@ -21,7 +21,7 @@ const Home = async () => {
               />
             </p>
             <h1 className="head-text">
-              Unleash The Power Of{" "}
+              Track Prices with{" "}
               <span className=" inline bg-gradient-to-r from-slate-600 via-slate-700 to-slate-900 text-transparent bg-clip-text">
                 Bargain
               </span>

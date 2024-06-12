@@ -83,3 +83,54 @@ export async function scrapeAmazonProduct(url: string) {
     throw new Error(`Failed to scrape product : ${error.message}`);
   }
 }
+
+//sephora scraper
+export async function scrapeultaProduct(url: string) {
+  if (!url) return;
+  const username = String(process.env.BRIGHT_DATA_USERNAME);
+  const password = String(process.env.BRIGHT_DATA_PASSWORD);
+  const port = 2225;
+  const session_ID = (1000000 * Math.random()) | 0;
+  const options = {
+    auth: { username: `${username}-session-${session_ID}`, password },
+    host: "brd.superproxy.io",
+    port,
+    rejectUnauthorized: false,
+  };
+  try {
+    //Fetch product page
+    const response = await axios.get(url, options);
+    const $ = cheerio.load(response.data);
+    const producttitle = $(".Text-ds--title-5").text().trim();
+    const productprice = $(".ProductPricing .Text-ds--title-6").text().trim();
+    const originalprice =
+      $(".ProductPricing .Text-ds--line-through").text().trim() || "";
+    const avaliable = $(".ProductActions .AddToBagButton__AddToBag") || "";
+
+    //product info
+
+    const rating = $(".ProductInformation .ReviewStars__Content .Text-ds ")
+      .text()
+      .trim();
+    let outofstock: boolean;
+    if (avaliable.html()) {
+      outofstock = false;
+    } else {
+      outofstock = true;
+    }
+
+    console.log(
+      producttitle,
+      " ",
+      productprice,
+      " ",
+      originalprice,
+      " Out of Stock:",
+      outofstock,
+      "Rating:",
+      rating + "/5"
+    );
+  } catch (error: any) {
+    throw new Error(`Failed to scrape product : ${error.message}`);
+  }
+}

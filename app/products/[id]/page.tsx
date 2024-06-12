@@ -37,13 +37,19 @@ const ProductDetails = async ({ params: { id } }: Props) => {
               <p className="text-[28px] text-secondary font-semibold">
                 {product.title}
               </p>
-              <Link
-                href={product.url}
-                target="blank"
-                className="text-base text-black opacity-50 hover:text-red-500 hover:opacity-100 hover:underline"
-              >
-                Visit Product
-              </Link>
+              <div className="flex flex-row items-center gap-x-3">
+                <Link href={product.url} target="_blank">
+                  <button className="btn w-fit mx-auto flex items-center justify-center gap-3 min-w-[200px] mb-3">
+                    <Image
+                      src="/assets/icons/bag.svg"
+                      alt="check"
+                      height={22}
+                      width={22}
+                    />{" "}
+                    <span className="text-base text-white">Buy Now</span>
+                  </button>
+                </Link>
+              </div>
             </div>
             <div className="flex items-center gap-3 ">
               <div className="product-hearts">
@@ -155,30 +161,11 @@ const ProductDetails = async ({ params: { id } }: Props) => {
               />
             </div>
           </div>
+
           <Modal />
         </div>
       </div>
-      <div className="flex flex-col gap-16 border-2 border-red-500">
-        <div className="flex flex-col gap-5">
-          <h3 className="text-2xl text-secondary font-semibold">
-            {product.description}
-          </h3>
-          <div className="flex flex-col gap-4">
-            {product?.description?.split("\n")}
-          </div>
-        </div>
-        <Link href={product.url} target="_blank">
-          <button className="btn w-fit mx-auto flex items-center justify-center gap-3 min-w-[200px]">
-            <Image
-              src="/assets/icons/bag.svg"
-              alt="check"
-              height={22}
-              width={22}
-            />{" "}
-            <span className="text-base text-white">Buy Now</span>
-          </button>
-        </Link>
-      </div>
+
       {similarProducts && similarProducts?.length > 0 && (
         <div className="py-14 flex flex-col gap-2 w-full">
           <p className="section-text">Similar products</p>

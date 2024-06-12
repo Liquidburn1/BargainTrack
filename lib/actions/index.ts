@@ -6,7 +6,7 @@
 import { revalidatePath } from "next/cache";
 import Product from "../models/product.model";
 import { connectToDB } from "../mongoose";
-import { scrapeAmazonProduct } from "../scraper";
+import { scrapeAmazonProduct, scrapeultaProduct } from "../scraper";
 import {
   getAveragePrice,
   getHighestPrice,
@@ -14,7 +14,7 @@ import {
 } from "../functions/utils";
 
 //Scrape and store
-export async function scrapeandstore(producturl: string) {
+export async function amazonscrapeandstore(producturl: string) {
   if (!producturl) return;
   try {
     connectToDB();
@@ -46,6 +46,16 @@ export async function scrapeandstore(producturl: string) {
     );
     revalidatePath(`/AmazonProduct/${newProduct._id}`);
     // console.log(scrapedProduct);
+  } catch (error) {
+    console.log("Issue Faced try again later ", error);
+  }
+}
+
+//sephora
+export async function ultascrapeandstore(producturl: string) {
+  if (!producturl) return;
+  try {
+    const scrapedProduct = await scrapeultaProduct(producturl);
   } catch (error) {
     console.log("Issue Faced try again later ", error);
   }
